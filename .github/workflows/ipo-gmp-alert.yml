@@ -31,7 +31,7 @@ jobs:
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
           GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
           GOOGLE_SECONDARY_CALENDAR_ID: ${{ secrets.GOOGLE_SECONDARY_CALENDAR_ID }}
-        run: python run.py
+        run: python run.py --debug
 
       - name: Commit updated notified-IPO state
         run: |
