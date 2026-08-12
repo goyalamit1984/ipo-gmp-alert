@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market Alerts Dashboard</title>
+<style>
+:root { color-scheme: light dark; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+  background: #fafafa;
+  color: #1a1a1a;
+}
+@media (prefers-color-scheme: dark) {
+  body { background: #16181c; color: #e6e6e6; }
+  .card { background: #1f2227 !important; border-color: #2c2f36 !important; }
+  .item-meta { color: #999 !important; }
+  a { color: #7cb3ff !important; }
+}
+h1 { font-size: 1.5rem; margin-bottom: 4px; }
+.updated { color: #777; font-size: 0.85rem; margin-bottom: 24px; }
+.card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.card h2 { margin: 0 0 8px; font-size: 1.15rem; }
+.subheading { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em;
+  color: #888; margin: 14px 0 6px; }
+.item-row, .news-row { padding: 8px 0; border-top: 1px solid #eee; }
+.item-row:first-of-type, .news-row:first-of-type { border-top: none; }
+.item-name { font-weight: 600; font-size: 0.95rem; }
+.item-meta { font-size: 0.82rem; color: #777; margin-top: 2px; }
+.news-row a { font-size: 0.92rem; text-decoration: none; color: #0645ad; }
+.news-row a:hover { text-decoration: underline; }
+.empty { color: #999; font-size: 0.88rem; font-style: italic; }
+</style>
+</head>
+<body>
+  <h1>Market Alerts Dashboard</h1>
+  <div class="updated">Last updated: 12 Aug 2026, 02:36 PM IST</div>
+  
+    <section class="card">
+      <h2>📊 Mainboard IPO</h2>
+      <h3 class="subheading">🔥 Today / Tomorrow</h3>
+    <div class="item-row">
+      <div class="item-name">Molbio Diagnostics IPO</div>
+      <div class="item-meta">12-Aug
+GMP: 149 · ₹807 · 27.26</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Dhoot Transmission IPO</div>
+      <div class="item-meta">12-Aug
+GMP: 254 · ₹871 · 29.74</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Milky Mist Dairy Food IPO</div>
+      <div class="item-meta">13-Aug · ₹140 · 19.29</div>
+    </div><h3 class="subheading">Upcoming</h3>
+    <div class="item-row">
+      <div class="item-name">Behari Lal Engineering IPO</div>
+      <div class="item-meta">14-Aug · ₹285 · 25.26</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Shiprocket IPO</div>
+      <div class="item-meta">14-Aug · ₹97 · 34.54</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Horizon Industrial Parks IPO</div>
+      <div class="item-meta">19-Aug · ₹60 · 0.0</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Lalithaa Jewellery Mart IPO</div>
+      <div class="item-meta">19-Aug · ₹201 · 19.9</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Shankesh Jewellers IPO</div>
+      <div class="item-meta">20-Aug · ₹93 · 0.0</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Sunshine Pictures IPO</div>
+      <div class="item-meta">20-Aug · ₹360 · 3.89</div>
+    </div>
+    </section>
+    <section class="card">
+      <h2>🏷️ SME IPO</h2>
+      <h3 class="subheading">🔥 Today / Tomorrow</h3>
+    <div class="item-row">
+      <div class="item-name">Fascinate Textiles NSE SME</div>
+      <div class="item-meta">13-Aug · ₹156 · 0.0</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Sham Foam BSE SME</div>
+      <div class="item-meta">13-Aug · ₹130 · 6.92</div>
+    </div><h3 class="subheading">Upcoming</h3>
+    <div class="item-row">
+      <div class="item-name">Q&amp;T Foods BSE SME</div>
+      <div class="item-meta">14-Aug · ₹115 · 18.26</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Pramodini Medicare NSE SME</div>
+      <div class="item-meta">14-Aug · ₹118 · 0.0</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Credent Connect NSE SME</div>
+      <div class="item-meta">17-Aug · ₹189 · 26.46</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">ENS Enterprises BSE SME</div>
+      <div class="item-meta">18-Aug · ₹92 · 0.0</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Skytech Infinite Platform NSE SME</div>
+      <div class="item-meta">18-Aug · ₹77 · 0.0</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Technocrats Plasma Systems BSE SME</div>
+      <div class="item-meta">18-Aug · ₹132 · 21.97</div>
+    </div>
+    </section>
+    <section class="card">
+      <h2>📄 Offer for Sale (OFS)</h2>
+      <p class="empty">Nothing upcoming right now.</p>
+    </section>
+    <section class="card">
+      <h2>📄 Rights Issue</h2>
+      <h3 class="subheading">Upcoming</h3>
+    <div class="item-row">
+      <div class="item-name">Minolta Finance Ltd</div>
+      <div class="item-meta">20-Aug-2026 · ₹1.2</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Genesys International Corp.Ltd.</div>
+      <div class="item-meta">21-Aug-2026 · ₹50</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Shanti Gold International Ltd.</div>
+      <div class="item-meta">21-Aug-2026 · ₹215</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Sunrest Lifescience Ltd.</div>
+      <div class="item-meta">02-Sep-2026 · ₹35</div>
+    </div>
+    <div class="item-row">
+      <div class="item-name">Si Capital &amp; Financial Services Ltd.</div>
+      <div class="item-meta">03-Sep-2026 · ₹10</div>
+    </div>
+    </section>
+    <section class="card">
+      <h2>📄 Buyback</h2>
+      <p class="empty">Nothing upcoming right now.</p>
+    </section>
+    <section class="card">
+      <h2>📰 Holdings News</h2>
+      <h3 class="subheading">Reliance Industries</h3>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMipgJBVV95cUxQNmk3X2luVm1QNnZIRThvZkxOTzJVbzBRV1V5NjJTZ29PRnMzQWRUQm1sOHRzLWF4YVhsd29YRGpOUkloczhJdUF4YkJIZ0ZNNC1RMEllOFFRanE1Ymp5ZEwtN1Q1eDNocmxxN2JfRjdsd0h4OTBzUWIwM3RLUDgtczg2ZVFNWE9nLV9va1k5aUJnTFFGRkNyRnJVd0RNQTEwRTJwbHZpZ09aZVFuekZCbHlWbEhHaWRFWXVfNzdUVm1ucjlfSjVMX0dndVA4dS1fOU1IWFYweVFFNDhCWlpJUFNyUVNGaXZfNWtfS2tsMl8xMVFFbm41dUQ4V2dCNHdMOXNNVVpYV0dkWXExQzROZUhKaGlXY0RsbkJVNEVHNURFY2x3aEE?oc=5" target="_blank" rel="noopener">Infosys, Vedanta among 10 stocks that saw the sharpest decrease in LIC holdings in Q1. See full list - The Economic Times</a>
+        <div class="item-meta">The Economic Times</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxQaVNuT0tIWjg2RWhqeWh2bDRLei1fUW5JVjlaYVl6LWhXUUhydWs4aV8zREdfVHJBcndNVFdHSmlLdGx6NlVMWFZrQmN3dno4MEtleXR1a2J2RDJLUFJTbm9FdUQ3VWFzakVBR2ZPTUtzd3V0M3N1RFltcU5IeGp5M1ZiQ1l2QzVaR2ZDTG5wY1I4akxzaTctMllJVHJ4c0E1c1MyT2FsR2tac0R4UmdhWDFsUjY2bzJzX0hQdVJIdXlhSDcyNWFtRmRnVmM4a0FTT1ZWYWVGem9TRDY1bjNONk5NME1VS2FKS1J2TWVn?oc=5" target="_blank" rel="noopener">Tenneco Clean Air, Kalpataru Projects, PI Industries shares spurt amid heavy volumes; check full list - Upstox</a>
+        <div class="item-meta">Upstox</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMihAJBVV95cUxOdkdzWkhqaXcwQkN5ZnZvN2NFYWtDSUgwTlo3Yi01dDB1WHpZWnBKVzhjSkdiQVZuaXMyUWpZVVVvcy00TnF2TFlMel9TWWVqNUdnZ21nWHJDa1kwbDNxWW9KWHVXNlRkdWszSEI3cWFNSDdOeUl5a0xJNy1HOHl1NWkwLUx4VVJrLUstMnN2Wnp4UFY1cXdyYmRjZk1aZlhES2t5Mm9XVVYtaVhLRlM5M2hZT3FxejFTRDhKeVBBcFR3b0gtYWRNOWJWY2ZxcXRFTm5NNGhPRjJyZXF1SGtjWlJQekRjY3V6NjUtQ0VjbDV0T2g1cXBndUN3eGxocDNLSFltNdIBigJBVV95cUxQSWo0T0gtVGhkUlUtLVdkc09jb1NuMTJOREVPNkxhNmlUczdFYUJZMWNZU21YRjZzT3B4YWpRU0t0c2RnQjNxMFRGVW1jSDNpU2t3NUlBeElkQjNfd0QwYnJ2UlBsNzZ2VUx2a09sVWRJaVFmZnpyQVhMeXJHbmpWRWNsc2dLd0JCNkdTUXlOSG9PZkRJZXNUTFZOaHBibTNOTllmYzA0ejJvVHNSMVE0Nml3RnlXQTZHejA2eXFOSGM2VHItYk0yaGsxbUNMRXRJSDkwbWFPMm9NamZvSUtsUFpKWXEzVFlGSXJwNk9sSGkxOHlmcEplZWE3TTNlcDZ4WUt1WHByMnlZdw?oc=5" target="_blank" rel="noopener">Small-cap infra stock under ₹100 jumps 3%, showing resilience against stock market sell-off - livemint.com</a>
+        <div class="item-meta">livemint.com</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxQd3NrWEdjYWhVS3RaeE1hcVZVMFViYzBWeGRwSnRtaDUwd0F2b0R5OVFEZWtPM1NNdDk2RUJyXzJRaTJrdWstdlNDdkVYeW5taW9aYzNUZ2wzS0hVZjFtWVhkc2ZscVg5THg5WHA5TWh2RVBNc2E1Zld0NDlKS1VmTGpCeEpRLW82WU1SeThWTTNUSldTd3Q0d0NXZkxDOHd5YzNRbFZ3c3pfSjkxZUhrbHUySThXN2FMb25OZjFRUnB5eHRIZzhZZzBuY0FCSk9NUDlPRTk2QTJpYlpU?oc=5" target="_blank" rel="noopener">BPCL, HPCL, IOCL, Reliance Shares Alert: Why Oil &amp; Gas Stocks Fall After Rs 3/Litre Windfall Tax On Petrol? - Goodreturns</a>
+        <div class="item-meta">Goodreturns</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxPOTJ5OVpBQVJCNkpIOTRLWDRmVlVVeXhSeXZ4d0hRLTRVbkxabjEzTnpOd3lfblNiOTdPY2gyOGxOXzY0UUw2QjB2WXB3SXdFWnJObFBFOVNuSzBQZUtmN1BQZ204YXNVQnVpa1dsRGc1U3NIN2tQamRaanZ5UmxGUmhEZ0FMaE9jTWV4clE2WDlDZGFOaE1wSVpKYWNlelBSY21QQ3dpcy13RGhBZHpIQkZiNDB4S044eVNJRVg3b3Jhd1c5MTVjOUtwN3p4RWE4azgwZUpGX3VMWUNKNmdfSWZB0gHnAUFVX3lxTE50UjRaS09LWl94Tlc4cFRqMmpKeG41X0ZtR0pYaUduemZRUnd4QjBiNkN1WVhWSmtEZ3FQVmsyUTdPZDdKVXU1bUZyN2l1bmlqZjJMUENyZ1NPSjh2YTlXOFhDVDJtbWpYR3JvY1M5Wk1fUlZ6cGRab252cm8tNmh4S1dZTEEzLW5qYmZQYV9xTENwY2RsQWstbVBteUtMdGF0bWQ4QkYzOEhGVEZwa0FkSFNEb0lSV1M2Tm9CcFREalM3ejVwWTBVOUhaSXlHaVhFTjhzOXkyckFqcE5TSFduQ1ZUM2gxZw?oc=5" target="_blank" rel="noopener">₹18K cr bet! Retail investors bet on Infosys, TCS, Reliance &amp; 3 other falling bluechips - The Economic Times</a>
+        <div class="item-meta">The Economic Times</div>
+      </div><h3 class="subheading">Tata Consultancy Services</h3>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPeUZOVl9lRjMzclQ1OWtwazVLVzRPcWdnaGRTLS1LeUhyTklSbFNycWI3NFc5bWZXS3IzUUxCbVg2VmhuVUJIOTZsaE92cDUySkp0UDhhZ1dmUG5fNWprUjZITXVscXZ6RDNvSzBtTHViRkV2MWxmZW5WT044aGRfRExFVmVTd2t3QWZtVHJXTjFuN1lTRkRUR214TV85amlmWXJrTlZHbXQ1aGhHYjVGTkQ2VWY?oc=5" target="_blank" rel="noopener">Why is Tata Consultancy Services stock sliding today? - Investing.com</a>
+        <div class="item-meta">Investing.com</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE4yZG1MMUJWTjQzeUxZdV9QMF90azdyZlhNOTctMFZTMTYyRVhVWlZKbDFRenlSZXN2aEpLWTRkVHlROVpBNmpZYWZ5V3EwZ2FQU2loLQ?oc=5" target="_blank" rel="noopener">TATA CONSULTANCY SERV LT (TCS.NS) stock price, news, quote and history - Yahoo Finance Singapore</a>
+        <div class="item-meta">Yahoo Finance Singapore</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxOMHZ2eExBdGdxTldGRzFfT0hyRmtpVGttc2hKRmdfQU1ISHMwcGJIMG9yVWN2bk5iNThNcllpRVhYeW8tT3Q2TW5aLWF4ZV9abkwzSHlmYTZXN0wyYzdZZ3E0UkZnWkVabVZjWmJqS0Z5NzVkU21DbTF3Tjhicy1oYk1fLXRHM1J5TXBTTndJeXR4N3RDR1VRdnJiLUZ5UVFzYldXdDVkLW5XckdXOUNWVWtEajBFNjlYRGdydlhvdnZNSzNkeG9BZE9pVjhXMTIwb0JzMjdkYjFQNjZBS20zVEpvcHplaVNTcF84N3o0b9IB9AFBVV95cUxNbk9heW05Y3lXTW5jSW9MLUVtTDdnWGZMd0FUeE5OWDIweWNqRGJEcldzdnRlV0poOVhVZnZZTnl5RXVpOGJMRGlRb1hVTVNBMkcxRjc0RHZfNVZFb21YMlZyRFJqNVFXMWQxaXVNUkd2Y1lTdG4xVWF3dExEMVVhRGpRNlE3T2ZpSnJMWTBOMERLakxGUEE3S0UzV3B0ZFdpR2RMYllQcVZ2bUxfXzliZFloZlFXNzRjazkwRGQwZkw1V2VWOERWVWR5T0p5WTh6dV9UZkF5NUNvUl9FMEtHZFRKaGdtRy11YjZEWE5DOVo5Y0Ff?oc=5" target="_blank" rel="noopener">Tata Consultancy Services Shares Decline 2.02%; Stock Among Top Losers on Nifty 50 - Moneycontrol.com</a>
+        <div class="item-meta">Moneycontrol.com</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPWDM5NjN1OTIwMm1tc3ZNMmJZcS1OUVlZbDJybEVRdmpnb0VUSWFXRDNCbkI5UVM5SVpqMW5sV3pmRGZQeThWTmU2eUVUd1ZMUThIWUtFT3lMaE9vZFpjRTJDQVpYOGlYWXBGR2FvcVBxaF9qelBqcnBCWDc3a2dzd2dBVkJ4ZWk1a1NLMGRFS3kwQ0F4OElab0dXMzhESGs2UFEtZVlFS0FPX3FtVzgtR05FbzdnaUxJUlBxYmxwbkZETXNoM2NQZV91czBsdzdENVBkUUUxNjAydEE?oc=5" target="_blank" rel="noopener">TCS, Tata Motors PV, Tata Steel shares slide up to 6% as N Chandrasekaran steps down; key details - Upstox</a>
+        <div class="item-meta">Upstox</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOb0dSaG5xU1dWTHNwa2c2NlhuLWlrRzJqT2xEVWk4VGtQOUkzcU5TbGVmNG9NajFnSlI1YjlPeEllQkRzS29TdGNOdGM2blRxa2huZVJxX3hQYkNHUDBQNmhDQ1hoamFLRm1ZbHF3ck8zOENjVkdObVNyY3NYTHR6VVBmZ2FfV213cTdYU0t3MWJ4QTZFREJWYmtLZG1Pd3czclU0TnZtS0lYcUUtQnVKZXJWT2o0U0lfQjMw0gHIAUFVX3lxTE92bUpIVjNZcHZFa3VLc3A3QTZpa3B3M3dnMUQ0bkpscUhTQkQtSGxac3lUTHdyd3czczFSVWZHRjhXUG1JSWlyTUpfNmZRZloxNlhqdFpHbnRPeDJtd1dvY09vVTJlUEdhMUo2ZUdHajZoc3pRdzlTT0hFam5WZThQeHJycFl5c01ZWk15WFVWN2NfNUdpaVBJZDlLOFdFeHVwdVNyRHppdHptVW9Ea0RlVW82ckNsMFlUN2dObTQyWFRpNDM1RUFq?oc=5" target="_blank" rel="noopener">TCS, Tata Motors And Other Group Stocks Fall Up To 5% On Reports Of N Chandrasekaran Exit - Outlook Money</a>
+        <div class="item-meta">Outlook Money</div>
+      </div><h3 class="subheading">HDFC Bank</h3>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxNY1lEcFUtUGN4NXBEamJtR3VQRXhxRmd4ZUp1MHJJa2h1djc2SnBPT01zWkxNa2ZWNkRMR0ZiV1hvTGtYZm5XUVhJRkcxUUtyTnJWQnotRHVNQlQ1elNwSGRxR0xWbnpwdFVTTzZxMURpMHZaMG1YY01YYUhPRmxCajk5NmZqVU5HVGFBaTRUbkxaN3VKY0hLXy1vbUR0ZWdNNVplaDdhdlIwT2Qyb3MyVlh1ZjZ1UVdhb0x2RGFQQTlQM2Rtb3QzNDFxaUhTUG9uX0NXbUl5SFNFc0lvUXljZ0daUGcxdw?oc=5" target="_blank" rel="noopener">HDFC Bank hits 52-week low as stock slumps over 27% in 2026, ₹4 lakh crore market cap wiped out - Upstox</a>
+        <div class="item-meta">Upstox</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxQYmpSUlFQUEhFTXpjR3A2cDc5c0VfMmVpNVNzWDVQNDJjNUU2NkozTnVYa3ZnLXVSY0ZTaTd0azl3UkRGeG1OamxDZ2EtTnYtZEFnVVUzSzlrcV93ODJtR1laZ3FRU0hkTXhEaURuNGM5Y0RhMzUxT3hsOUZBeUhWWGRIcmdxLTc5N25TeEFLSW9KZGpPc2tKMXNHRXdGWGYySnZQOVQzX09xeU9jLS14WG8xWkFKajBlMmIxclpSWW92SnhKZjhuZHZmRndLSkFkbV95ZlZJd0bSAd4BQVVfeXFMTnhZUTZMVmF1UXFPOFlyOVI2OThUYkxYRHVjcERZem1xY3ZpLURwdUxPVU9WcjlSMUhsRkdJc09GQzN5VkpMUEpvVjZKcUphUnB5N19mZ2xpbmltQkJZZ2o0TTV2SGpiRV9fQlN0SHM1c1cwTVZoRThrMk9qNVFGM1ZnN1did1pFR1NWNlJmdDFTdjBlbTd6ZllqOUREemllQTJvWUdwX3AxTFZUa2xiTks1SW9neG5CTWFLYktBMHZIdy1MRjd1akJlV0VOeWNDMDBWbUdkdDJSdFVVLVh3?oc=5" target="_blank" rel="noopener">HDFC Bank, SBI, KVB, City Union, Axis Bank: 5 bank stocks to buy, target prices - Business Today</a>
+        <div class="item-meta">Business Today</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPYXh2UFpwTFhTSTJWZEJTYzF4YjJjRXhzRTNsenY4cTFGTzlqbzVUMVQxU1A1V1RzcmZ4LVVMV3VzclpOZW1LMGZsdC1uM2JjcnRrQWJjSGV6M1NXcUxvTkhIbVZNcnVpT1NfQjZ3cmVfSlFuanlfUGh0UTIydUdkZ3c4b3UtdS1ZcnNvdVdtMTBwLUliVHc5TGEwUmYtWjJSYnB1QWc0UUNGNng5Tk9FNWNtU04xVTBUSlZuTdIBwgFBVV95cUxPbFNaZ0k1UFFJbng2LUp2bF9WMDc0bERwV054N0ozM1NoTVo1RGtOTkpaUEhwT0gxSG94VnY4c1hidlg0S1RUUFBQR2FhbEVnUmlxOWFuZ1o0d3BFa3lBdm1tS1BDbHdhd3pZTk5MN1V5cUxBaWF0UEhTamZOdk5FUmV6NjNjVHhPNTRuaDFsTnVwX2l1V3M0ZzhuOEdYQmZid05WU2x6UU1KRHBUVU1LbnNrSXdTa01EZlRJbWdKVXRjdw?oc=5" target="_blank" rel="noopener">HDFC Bank stock hits 2-year low, tanks 12% in one month - Business Standard</a>
+        <div class="item-meta">Business Standard</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxOMGZ4THFNZEd3NlpzODBRb25IWjJBZzIxOUJUMm9IWWVwMTZOZm9DU25GN2dpLXVENXNGc1p6ZVVhTUw2YWQyQ2VDZU5Wd0pqSlEwTTBISnVJaHlTMXdJSFJVdFJhZmtsYXRPVW14RGI1Rkd0bWNKOTI1bnh1N2FUeG9oYlVlZEhMa2I2R1Z3c19DUkVRV3QyTVJaSVdoVTBGS2pXNzRGbjd6eUdoYXh6Mw?oc=5" target="_blank" rel="noopener">HDFC’s triple-hit valuation looks hard to restore - Breakingviews</a>
+        <div class="item-meta">Breakingviews</div>
+      </div>
+      <div class="news-row">
+        <a href="https://news.google.com/rss/articles/CBMi2gFBVV95cUxQMWZLN0xvUld0YmFqY2NJWXM4SU95WGx2bmFadnlmLXRZOURERkxzWGxHaEwzSDRfTE9lNkJFM1lqQ0FzcEdfbFEwbjM0SFpFM18zVUxITG1Mc2pSNmRmTUUxVDJFdC1zY1hvcnh1QVlzb3N1NFB6YWxjdTU3eEgwbVhHb2prQnBvY2NOcWJEZG1zMVJFeEJZMmZIeFpRcDhYNzMwald5bTZSb3UyZDFxNEx5eWZBU1pjRlVjWlBKRDFmOEhUVktZVzJwUmVCaVBLWHRfbVVrM2E5UQ?oc=5" target="_blank" rel="noopener">HDFC vs ICICI vs Yes Bank: Q4 Results Spark Stock-Specific Rally; Which Bank Stock Wins The Race? Target Price - Goodreturns</a>
+        <div class="item-meta">Goodreturns</div>
+      </div>
+    </section>
+</body>
+</html>
