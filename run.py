@@ -14,7 +14,7 @@ import importlib
 import json
 import sys
 
-from conditions import matches_all, within_date_window
+from conditions import matches_all, closing_soon
 from state import load_state, save_state, already_notified, mark_notified
 
 _fetch_cache = {}
@@ -58,23 +58,27 @@ def run(debug=False):
         date_window = rule.get("date_window_days")
         if date_window is not None:
             before = len(matched_items)
-            matched_items = [i for i in matched_items if within_date_window(i, date_window)]
+            matched_items = [i for i in matched_items if closing_soon(i, date_window)]
             print(f"Rule '{rule['name']}': {before} matched conditions, "
-                  f"{len(matched_items)} within {date_window}-day window")
+                  f"{len(matched_items)} closing within {date_window} day(s)")
 
-        new_items = [i for i in matched_items if not already_notified(state, rule["name"], i)]
-        skipped = len(matched_items) - len(new_items)
-        if skipped:
-            print(f"Rule '{rule['name']}': skipping {skipped} already-notified item(s)")
-
-        print(f"Rule '{rule['name']}': {len(new_items)} new item(s) to notify")
-
-        if new_items:
+        notifier = get_notifier(rule["notifier"])
+        notified_count = 0
+        skipped_count = 0
+        for item in matched_items:
+            # Check-and-mark right here (not precomputed) so two items with
+            # the same name in a single fetch don't both slip through.
+            if already_notified(state, rule["name"], item):
+                skipped_count += 1
+                continue
+            notifier.notify(item, rule)
+            mark_notified(state, rule["name"], item)
+            notified_count += 1
             any_match = True
-            notifier = get_notifier(rule["notifier"])
-            for item in new_items:
-                notifier.notify(item, rule)
-                mark_notified(state, rule["name"], item)
+
+        if skipped_count:
+            print(f"Rule '{rule['name']}': skipping {skipped_count} already-notified item(s)")
+        print(f"Rule '{rule['name']}': {notified_count} new item(s) notified")
 
     save_state(state)
 

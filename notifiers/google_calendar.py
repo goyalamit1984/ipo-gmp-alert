@@ -47,7 +47,12 @@ def notify(item: dict, rule: dict):
     title = title_template.format(**safe_item)
     description = desc_template.format(**safe_item)
 
-    today = datetime.date.today().isoformat()
+    # Put the event on the IPO's actual closing date, not today's date.
+    days_until_close = item.get("days_until_close")
+    if days_until_close is not None:
+        event_date = (datetime.date.today() + datetime.timedelta(days=days_until_close)).isoformat()
+    else:
+        event_date = datetime.date.today().isoformat()
 
     service = _get_service()
     calendar_id = os.environ.get("GOOGLE_CALENDAR_ID", "primary")
@@ -55,8 +60,8 @@ def notify(item: dict, rule: dict):
     event = {
         "summary": title,
         "description": description,
-        "start": {"date": today},
-        "end": {"date": today},
+        "start": {"date": event_date},
+        "end": {"date": event_date},
         "reminders": {
             "useDefault": False,
             "overrides": [{"method": "popup", "minutes": 0}],
