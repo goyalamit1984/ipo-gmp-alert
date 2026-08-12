@@ -209,6 +209,12 @@ def generate(debug=False):
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(output)
 
+    # Tells GitHub Pages to skip its default Jekyll processing - we're
+    # serving plain static HTML, and Jekyll's default theme errors out
+    # trying to process assets that don't exist in this setup.
+    nojekyll_path = os.path.join(os.path.dirname(OUTPUT_PATH), ".nojekyll")
+    open(nojekyll_path, "a").close()
+
     print(f"Wrote {OUTPUT_PATH}")
 
 
