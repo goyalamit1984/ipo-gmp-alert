@@ -37,3 +37,14 @@ def evaluate(item: dict, condition: dict) -> bool:
 
 def matches_all(item: dict, conditions: list) -> bool:
     return all(evaluate(item, cond) for cond in conditions)
+
+
+def within_date_window(item: dict, window_days: int) -> bool:
+    """True if the item's open_date OR close_date falls within
+    [today, today + window_days] (inclusive). Items with unparsed/missing
+    dates never match this filter, since we can't confirm they're timely."""
+    for field in ("days_until_open", "days_until_close"):
+        days = item.get(field)
+        if days is not None and 0 <= days <= window_days:
+            return True
+    return False

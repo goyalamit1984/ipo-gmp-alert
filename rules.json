@@ -3,13 +3,28 @@
     "name": "Mainboard IPO with GMP > 15%",
     "fetcher": "ipo_gmp",
     "notifier": "google_calendar",
+    "date_window_days": 1,
     "conditions": [
       {"field": "category", "op": "==", "value": "mainboard"},
       {"field": "gmp_percent", "op": ">", "value": 15}
     ],
     "notify_config": {
       "title_template": "\ud83d\udcc8 IPO Alert: {name} GMP {gmp_percent}%",
-      "description_template": "Mainboard IPO {name}\nGMP: \u20b9{gmp_rupees} ({gmp_percent}%)\nPrice: \u20b9{price}\nEst. Listing: \u20b9{est_listing}\nCloses: {close_date}"
+      "description_template": "Mainboard IPO {name}\nGMP: \u20b9{gmp_rupees} ({gmp_percent}%)\nPrice: \u20b9{price}\nEst. Listing: \u20b9{est_listing}\nOpens: {open_date}\nCloses: {close_date}"
+    }
+  },
+  {
+    "name": "SME IPO with GMP > 50%",
+    "fetcher": "ipo_gmp",
+    "notifier": "google_calendar",
+    "date_window_days": 1,
+    "conditions": [
+      {"field": "category", "op": "==", "value": "sme"},
+      {"field": "gmp_percent", "op": ">", "value": 50}
+    ],
+    "notify_config": {
+      "title_template": "\ud83d\udd25 SME IPO Alert: {name} GMP {gmp_percent}%",
+      "description_template": "SME IPO {name}\nGMP: \u20b9{gmp_rupees} ({gmp_percent}%)\nPrice: \u20b9{price}\nEst. Listing: \u20b9{est_listing}\nOpens: {open_date}\nCloses: {close_date}"
     }
   }
 ]

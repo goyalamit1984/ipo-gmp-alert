@@ -14,7 +14,8 @@ import importlib
 import json
 import sys
 
-from conditions import matches_all
+from conditions import matches_all, within_date_window
+from state import load_state, save_state, already_notified, mark_notified
 
 _fetch_cache = {}
 
@@ -34,6 +35,7 @@ def get_notifier(name):
 
 def run(debug=False):
     rules = load_rules()
+    state = load_state()
     any_match = False
 
     for rule in rules:
@@ -52,16 +54,32 @@ def run(debug=False):
         print(f"Rule '{rule['name']}': fetched {len(items)} items from {fetcher_name}")
 
         matched_items = [i for i in items if matches_all(i, rule["conditions"])]
-        print(f"Rule '{rule['name']}': {len(matched_items)} item(s) matched")
 
-        if matched_items:
+        date_window = rule.get("date_window_days")
+        if date_window is not None:
+            before = len(matched_items)
+            matched_items = [i for i in matched_items if within_date_window(i, date_window)]
+            print(f"Rule '{rule['name']}': {before} matched conditions, "
+                  f"{len(matched_items)} within {date_window}-day window")
+
+        new_items = [i for i in matched_items if not already_notified(state, rule["name"], i)]
+        skipped = len(matched_items) - len(new_items)
+        if skipped:
+            print(f"Rule '{rule['name']}': skipping {skipped} already-notified item(s)")
+
+        print(f"Rule '{rule['name']}': {len(new_items)} new item(s) to notify")
+
+        if new_items:
             any_match = True
             notifier = get_notifier(rule["notifier"])
-            for item in matched_items:
+            for item in new_items:
                 notifier.notify(item, rule)
+                mark_notified(state, rule["name"], item)
+
+    save_state(state)
 
     if not any_match:
-        print("No rules matched today.")
+        print("No new alerts today.")
 
 
 if __name__ == "__main__":
