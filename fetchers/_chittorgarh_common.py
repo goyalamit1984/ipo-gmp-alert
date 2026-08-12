@@ -2,14 +2,12 @@
 Shared scraper for chittorgarh.com's report pages (OFS, Rights Issue,
 Buyback). These use the same JS-rendered DataTables pattern as
 investorgain.com's IPO GMP page, so this reuses that approach: Playwright
-to render, header-keyword matching to find columns, since exact column
-names aren't confirmed until a live --debug run against the real page.
+to render, header-keyword matching to find columns.
 
-NOTE: column headers for these pages haven't been verified against a live
-render yet (unlike ipo_gmp.py, which was calibrated against real debug
-output). Run `python run.py --debug` after first deploying and check the
-[debug] headers / column map lines - the aliases below may need tweaking,
-exactly like ipo_gmp.py's COLUMN_ALIASES did on first real run.
+NOTE: column headers for Rights Issue and Buyback haven't been confirmed
+against a live render yet (OFS has - see ofs.py's custom aliases). Run
+`python run.py --debug` and check the [debug] headers / column map lines -
+the aliases may need tweaking, same as ipo_gmp.py's calibration.
 """
 
 import datetime
@@ -18,14 +16,23 @@ import re
 from dateutil import parser as dateparser
 from playwright.sync_api import sync_playwright
 
-# Broad aliases since we haven't confirmed exact header text yet. "name" is
-# intentionally NOT matched by generic words like "issue" or "company" alone
-# to avoid grabbing the wrong column - refine after seeing real headers.
+# Only matches actual day-month(-year) patterns, e.g. "12-Aug-25" or
+# "12 Aug 2026" - deliberately strict so junk text like "-" or "Closed"
+# never gets fuzzy-matched into a nonsense date.
+_DATE_PATTERN = re.compile(r"\d{1,2}[-\s][A-Za-z]{3,9}(?:[-\s]\d{2,4})?")
+
+# Broad aliases since not all pages' headers are confirmed yet. "name" is
+# intentionally NOT matched by generic words like "issue" alone to avoid
+# grabbing the wrong column.
 DEFAULT_COLUMN_ALIASES = {
     "name": ["company", "name"],
     "open_date": ["open"],
     "close_date": ["close"],
     "price": ["price"],
+    # Fallback for pages with ONE combined date column instead of separate
+    # open/close columns (e.g. OFS's "Offer Date"). Only used if neither
+    # open_date nor close_date matched anything above.
+    "date_range": ["date"],
 }
 
 
@@ -43,10 +50,16 @@ def _parse_number(text):
 
 
 def _parse_date(text):
+    """Parse a date like '12-Aug-25' out of text. Only matches text that
+    actually looks like a day-month(-year) pattern - never fuzzy-guesses
+    a date out of unrelated text like '-' or 'Closed'."""
     if not text:
         return None
+    match = _DATE_PATTERN.search(text)
+    if not match:
+        return None
     try:
-        return dateparser.parse(text, dayfirst=True, fuzzy=True).date()
+        return dateparser.parse(match.group(0), dayfirst=True, fuzzy=False).date()
     except (ValueError, OverflowError, TypeError):
         return None
 
@@ -98,6 +111,8 @@ def fetch_table(url, category, debug=False, column_aliases=None):
         if debug:
             print(f"[debug] column map: {col_map}")
 
+        has_separate_dates = "open_date" in col_map or "close_date" in col_map
+
         rows = table.query_selector_all("tbody tr")
         for row in rows:
             cells = row.query_selector_all("td")
@@ -121,8 +136,19 @@ def fetch_table(url, category, debug=False, column_aliases=None):
             if not name:
                 continue
 
-            open_date_text = get("open_date")
-            close_date_text = get("close_date")
+            if has_separate_dates:
+                open_date_text = get("open_date")
+                close_date_text = get("close_date")
+            else:
+                # Single combined date column (e.g. OFS's "Offer Date",
+                # which spans a 2-day T/T+1 window). Pull out every
+                # date-like substring found in that cell; use the first as
+                # open, the last as close (same value if only one found).
+                range_text = get("date_range")
+                found = _DATE_PATTERN.findall(range_text) if range_text else []
+                open_date_text = found[0] if found else None
+                close_date_text = found[-1] if found else None
+
             open_dt = _parse_date(open_date_text)
             close_dt = _parse_date(close_date_text)
 

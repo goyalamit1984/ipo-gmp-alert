@@ -33,6 +33,11 @@ from playwright.sync_api import sync_playwright
 MAINBOARD_URL = "https://www.investorgain.com/report/live-ipo-gmp/331/ipo/"
 SME_URL = "https://www.investorgain.com/report/live-ipo-gmp/331/sme/"
 
+# Only matches actual day-month(-year) patterns, e.g. "12-Aug-25" or
+# "12 Aug 2026" - deliberately strict so junk text like "-" or "Closed"
+# never gets fuzzy-matched into a nonsense date (see _parse_date below).
+_DATE_PATTERN = re.compile(r"\d{1,2}[-\s][A-Za-z]{3,9}(?:[-\s]\d{2,4})?")
+
 # The site glues a status badge (Open/Closed/Upcoming/Listed, sometimes with
 # a listing price/gain like "L@72.00 (35.85%)") directly onto the name cell
 # with no space, e.g. "Ardee Industries IPOL@72.00 (35.85%)". Trim
@@ -49,11 +54,18 @@ def _clean_name(text):
 
 
 def _parse_date(text):
-    """Parse dates like '12-Aug-25' or '12-Aug-2026'. Returns a date or None."""
+    """Parse a date like '12-Aug-25' out of text. Only matches text that
+    actually looks like a day-month(-year) pattern - NOT fuzzy-matched
+    against arbitrary text like '-' or 'Closed', which dateutil's fuzzy
+    mode would otherwise happily (and wrongly) turn into some nonsense
+    date, silently producing garbage day-counts."""
     if not text:
         return None
+    match = _DATE_PATTERN.search(text)
+    if not match:
+        return None
     try:
-        return dateparser.parse(text, dayfirst=True, fuzzy=True).date()
+        return dateparser.parse(match.group(0), dayfirst=True, fuzzy=False).date()
     except (ValueError, OverflowError, TypeError):
         return None
 
