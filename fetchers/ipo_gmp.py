@@ -31,26 +31,33 @@ MAINBOARD_URL = "https://www.investorgain.com/report/live-ipo-gmp/331/ipo/"
 SME_URL = "https://www.investorgain.com/report/live-ipo-gmp/331/sme/"
 
 # Maps our internal field name -> substrings that might appear in the
-# site's column headers (checked case-insensitively).
+# site's column headers (checked case-insensitively). Order matters where
+# ambiguous - more specific/exact aliases should come first since we check
+# fields in dict order and skip a field once it's already mapped.
 COLUMN_ALIASES = {
-    "name": ["ipo"],
+    "name": ["name"],
     "price": ["price"],
     "gmp_rupees": ["gmp"],
-    "gmp_percent": ["gain", "%", "premium %"],
-    "est_listing": ["est", "listing"],
     "open_date": ["open"],
     "close_date": ["close"],
+    "est_listing": ["listing"],  # NOTE: also matches "LISTING" header; fine, no other column contains "listing"
 }
+# investorgain's table has no separate GMP% column - it's computed from
+# gmp_rupees / price, same formula the site itself uses.
 
 
 def _parse_number(text):
+    """Extract a number from text. If a range like '115-121' appears,
+    take the LAST number found (the upper bound), which is more useful
+    for filtering than a garbled concatenation of both bounds."""
     if not text:
         return None
-    cleaned = re.sub(r"[^\d.\-]", "", text)
-    if cleaned in ("", "-", "."):
+    text = text.replace(",", "")
+    matches = re.findall(r"[-+]?\d*\.?\d+", text)
+    if not matches:
         return None
     try:
-        return float(cleaned)
+        return float(matches[-1])
     except ValueError:
         return None
 
@@ -111,18 +118,28 @@ def _scrape_url(page, url, category, debug=False):
         if not name:
             continue
 
+        price = _parse_number(get("price"))
+        gmp_rupees = _parse_number(get("gmp_rupees"))
+        gmp_percent = None
+        if price and gmp_rupees is not None and price != 0:
+            gmp_percent = round((gmp_rupees / price) * 100, 2)
+
         item = {
             "name": name.strip(),
             "category": category,
-            "price": _parse_number(get("price")),
-            "gmp_rupees": _parse_number(get("gmp_rupees")),
-            "gmp_percent": _parse_number(get("gmp_percent")),
+            "price": price,
+            "gmp_rupees": gmp_rupees,
+            "gmp_percent": gmp_percent,
             "est_listing": _parse_number(get("est_listing")),
             "open_date": get("open_date"),
             "close_date": get("close_date"),
             "raw": dict(zip(header_cells, texts)) if header_cells else texts,
         }
         results.append(item)
+
+        if debug:
+            print(f"[debug] row: name={item['name']!r} price={price} "
+                  f"gmp_rupees={gmp_rupees} gmp_percent={gmp_percent}")
 
     return results
 
