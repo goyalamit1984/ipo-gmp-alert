@@ -26,5 +26,41 @@
       "title_template": "\ud83d\udd25 SME IPO Alert: {name} GMP {gmp_percent}%",
       "description_template": "SME IPO {name}\nGMP: \u20b9{gmp_rupees} ({gmp_percent}%)\nPrice: \u20b9{price}\nEst. Listing: \u20b9{est_listing}\nOpens: {open_date}\nCloses: {close_date}"
     }
+  },
+  {
+    "name": "OFS closing soon",
+    "fetcher": "ofs",
+    "notifier": "google_calendar",
+    "date_window_days": 1,
+    "conditions": [],
+    "notify_config": {
+      "calendar_id_env": "GOOGLE_SECONDARY_CALENDAR_ID",
+      "title_template": "\ud83d\udcc4 OFS Alert: {name}",
+      "description_template": "Offer for Sale: {name}\nPrice: \u20b9{price}\nOpens: {open_date}\nCloses: {close_date}"
+    }
+  },
+  {
+    "name": "Rights Issue closing soon",
+    "fetcher": "rights_issue",
+    "notifier": "google_calendar",
+    "date_window_days": 1,
+    "conditions": [],
+    "notify_config": {
+      "calendar_id_env": "GOOGLE_SECONDARY_CALENDAR_ID",
+      "title_template": "\ud83d\udcc4 Rights Issue Alert: {name}",
+      "description_template": "Rights Issue: {name}\nPrice: \u20b9{price}\nOpens: {open_date}\nCloses: {close_date}"
+    }
+  },
+  {
+    "name": "Buyback closing soon",
+    "fetcher": "buyback",
+    "notifier": "google_calendar",
+    "date_window_days": 1,
+    "conditions": [],
+    "notify_config": {
+      "calendar_id_env": "GOOGLE_SECONDARY_CALENDAR_ID",
+      "title_template": "\ud83d\udcc4 Buyback Alert: {name}",
+      "description_template": "Buyback: {name}\nPrice: \u20b9{price}\nOpens: {open_date}\nCloses: {close_date}"
+    }
   }
 ]

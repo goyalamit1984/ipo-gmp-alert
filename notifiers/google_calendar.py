@@ -55,7 +55,12 @@ def notify(item: dict, rule: dict):
         event_date = datetime.date.today().isoformat()
 
     service = _get_service()
-    calendar_id = os.environ.get("GOOGLE_CALENDAR_ID", "primary")
+    # Each rule can send events to a different calendar by setting
+    # "calendar_id_env" in notify_config to the name of an env var holding
+    # that calendar's ID (e.g. "GOOGLE_SECONDARY_CALENDAR_ID"). Falls back
+    # to GOOGLE_CALENDAR_ID (your primary calendar) if not set.
+    calendar_env_var = config.get("calendar_id_env", "GOOGLE_CALENDAR_ID")
+    calendar_id = os.environ.get(calendar_env_var) or os.environ.get("GOOGLE_CALENDAR_ID", "primary")
 
     event = {
         "summary": title,
